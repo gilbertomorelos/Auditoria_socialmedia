@@ -94,67 +94,28 @@
 </div>
 
 <script>
-    const PASSWORD = 'admin123123';
+    const PASSWORD = 'admin123';
     if (prompt('🔒 Contraseña:') !== PASSWORD) {
         document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>🔒 Acceso Denegado</h1></div>';
         throw new Error();
     }
 
     // ============================================================
-    // 🔥 CATÁLOGO DE PRODUCTOS - MODIFICA AQUÍ TUS PRODUCTOS
+    // 🔥 CATÁLOGO DE PRODUCTOS
     // ============================================================
-const productos = [
-    {
-        nombre: "🤖 Chatbot WhatsApp",
-        desc: "Chatbot automatizado 24/7 que responde mensajes, califica leads, agenda citas y mejora la atención al cliente. Todo personalizado a tu negocio.",
-        precio: "$2,499 MXN"
-    },
-    {
-        nombre: "⚡ Flujos de Automatización",
-        desc: "Secuencias automáticas para leads y clientes. Responde FAQs, envía catálogos y agenda citas sin intervención humana.",
-        precio: "$1,999 MXN"
-    },
-    {
-        nombre: "📊 Dashboard KPIs y Métricas",
-        desc: "Tablero interactivo con métricas en tiempo real: alcance, engagement, crecimiento, leads generados y conversiones. Acceso web 24/7.",
-        precio: "$2,499 MXN"
-    },
-    {
-        nombre: "🔍 Reporte de Competencia",
-        desc: "Análisis semanal de 3-5 competidores. Te mostramos qué publican, cuándo, su engagement y las estrategias que les funcionan.",
-        precio: "$1,499 MXN"
-    },
-    {
-        nombre: "📋 Auditoría de Automatización",
-        desc: "Detectamos fugas de leads, oportunidades de automatización y te entregamos un plan de acción con prioridades.",
-        precio: "$3,500 MXN (único)"
-    },
-    {
-        nombre: "📈 Análisis de Datos de Redes",
-        desc: "Analizamos tus métricas a fondo. Qué funciona, qué no, por qué, y te damos recomendaciones basadas en datos reales.",
-        precio: "$2,499 MXN"
-    },
-    {
-        nombre: "🎯 Investigación de Mercado",
-        desc: "Estudio completo de tu industria: tendencias, comportamientos de audiencia, oportunidades de crecimiento y análisis FODA.",
-        precio: "$4,999 MXN (único)"
-    },
-    {
-        nombre: "🔄 Optimización de Conversión (Funnels)",
-        desc: "Analizamos tu funnel de ventas actual y optimizamos cada etapa con automatización para aumentar tu tasa de conversión.",
-        precio: "$3,499 MXN"
-    },
-    {
-        nombre: "💬 WhatsApp API",
-        desc: "Integración profesional de WhatsApp Business API. Envía notificaciones masivas, recupera carritos y automatiza conversaciones.",
-        precio: "$3,999 MXN"
-    },
-    {
-        nombre: "🚀 Kit Estratégico Completo",
-        desc: "Chatbot + Dashboard + Reporte de competencia + Análisis de datos. Solución integral para digitalizar tu negocio.",
-        precio: "$7,999 MXN/mes"
-    }
-];
+    const productos = [
+        { nombre: "🤖 SMIT442 Chatbot", desc: "Chatbot automatizado 24/7 que responde mensajes, califica leads, agenda citas y mejora la atención al cliente.", precio: "$2,499 MXN" },
+        { nombre: "⚡ SMIT442 Flujos", desc: "Secuencias automáticas para leads y clientes. Responde FAQs, envía catálogos y agenda citas sin intervención humana.", precio: "$1,999 MXN" },
+        { nombre: "📊 SMIT442 Dashboard", desc: "Tablero interactivo con métricas en tiempo real: alcance, engagement, crecimiento, leads generados y conversiones.", precio: "$2,499 MXN" },
+        { nombre: "🔍 SMIT442 Competencia", desc: "Análisis semanal de 3-5 competidores. Te mostramos qué publican, cuándo, su engagement y las estrategias que les funcionan.", precio: "$1,499 MXN" },
+        { nombre: "📋 SMIT442 Auditoría", desc: "Detectamos fugas de leads, oportunidades de automatización y te entregamos un plan de acción con prioridades.", precio: "$3,500 MXN (único)" },
+        { nombre: "📈 SMIT442 Analytics", desc: "Analizamos tus métricas a fondo. Qué funciona, qué no, por qué, y te damos recomendaciones basadas en datos reales.", precio: "$2,499 MXN" },
+        { nombre: "🎯 SMIT442 Research", desc: "Estudio completo de tu industria: tendencias, comportamientos de audiencia, oportunidades de crecimiento y análisis FODA.", precio: "$4,999 MXN (único)" },
+        { nombre: "🔄 SMIT442 Funnels", desc: "Analizamos tu funnel de ventas actual y optimizamos cada etapa con automatización para aumentar tu tasa de conversión.", precio: "$3,499 MXN" },
+        { nombre: "💬 SMIT442 WhatsApp API", desc: "Integración profesional de WhatsApp Business API. Envía notificaciones masivas, recupera carritos y automatiza conversaciones.", precio: "$3,999 MXN" },
+        { nombre: "🚀 SMIT442 Kit Completo", desc: "Chatbot + Dashboard + Reporte de competencia + Análisis de datos. Solución integral para digitalizar tu negocio.", precio: "$7,999 MXN/mes" }
+    ];
+
     let leads = [];
 
     function cargarDatos() {
@@ -182,7 +143,6 @@ const productos = [
             <div class="insight-card"><div class="insight-title">💰 VALOR PIPELINE</div><div class="insight-text">Potencial de $${recuperables * 50} MXN</div></div>
         `;
 
-        // Productos
         document.getElementById('productosGrid').innerHTML = productos.map(p => `
             <div class="producto-card">
                 <div class="producto-nombre">${p.nombre}</div>
@@ -208,7 +168,7 @@ const productos = [
                     <td>${l.whatsapp || '—'}</td>
                     <td>${l.industry}</td>
                     <td><strong>${l.engagement}%</strong></td>
-                    <td>${l.score}/100</span></td>
+                    <td>${l.score}/100</td>
                     <td><span class="${badgeClass}">${prioridad}</span></td>
                     <td><button class="btn btn-view" onclick="verRecomendaciones('${l.date}')">📋 Ver</button></td>
                     <td>
@@ -223,12 +183,8 @@ const productos = [
     function verRecomendaciones(date) {
         const lead = leads.find(l => l.date === date);
         if (!lead) return;
-
         const perdidos = Math.floor((100 - lead.score) / 2) + 5;
 
-        // ============================================================
-        // 🔥 RECOMENDACIONES AVANZADAS - MODIFICA CON TUS PRODUCTOS
-        // ============================================================
         document.getElementById('modalTitle').innerHTML = `📋 Lead: ${lead.username || 'Anónimo'}`;
         document.getElementById('modalBody').innerHTML = `
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;">
@@ -248,38 +204,38 @@ const productos = [
             <h3>✅ 3 RECOMENDACIONES BÁSICAS (recibió)</h3>
             ${(lead.recomendaciones || []).map(r => `<div class="rec-item">✅ ${r}</div>`).join('')}
             <hr>
-            <h3>🔒 8 RECOMENDACIONES AVANZADAS - SOLUCIONES [NOMBRE DE TU AGENCIA]</h3>
-            <div class="rec-item">🤖 <strong>[NOMBRE DE TU CHATBOT]</strong> - Implementa nuestro chatbot automático que responde mensajes 24/7, califica leads y agenda citas mientras duermes. Incluye panel de control y estadísticas.</div>
-            <div class="rec-item">📅 <strong>[NOMBRE DE TU PROGRAMADOR]</strong> - Nuestro sistema de programación de contenido te permite planificar publicaciones en todas tus redes sociales con calendario visual, sugerencias de horarios óptimos y vista previa.</div>
-            <div class="rec-item">📢 <strong>[NOMBRE DE TU SERVICIO DE ADS]</strong> - Gestión profesional de campañas publicitarias: segmentación avanzada, creación de creatividades, optimización diaria y reportes detallados de ROI.</div>
-            <div class="rec-item">🎯 <strong>[NOMBRE DE TU RETARGETING]</strong> - Recupera leads que visitaron tu perfil y no compraron. Nuestro sistema de retargeting automático les muestra anuncios personalizados hasta convertirlos.</div>
-            <div class="rec-item">📊 <strong>[NOMBRE DE TU ANALYTICS]</strong> - Reporte semanal automático de tus competidores. Analizamos sus publicaciones, engagement, hashtags y estrategias para que copies lo que les funciona.</div>
-            <div class="rec-item">⚡ <strong>[NOMBRE DE TU AUTOMATIZACIÓN]</strong> - Automatiza respuestas a mensajes frecuentes con IA personalizada para tu negocio. Responde FAQs, envía catálogos y agenda sin intervención humana.</div>
-            <div class="rec-item">🔍 <strong>[NOMBRE DE TU SUITE]</strong> - Gestiona Instagram, Facebook y TikTok desde un solo lugar. Nuestra suite unificada te muestra todas las interacciones y métricas en un dashboard.</div>
-            <div class="rec-item">📈 <strong>[NOMBRE DE TUS REPORTES]</strong> - Dashboard interactivo con tus KPIs en tiempo real: alcance, engagement, crecimiento, leads generados y conversiones. Acceso desde cualquier dispositivo.</div>
+            <h3>🔒 9 RECOMENDACIONES AVANZADAS - SOLUCIONES SMIT442</h3>
+            <div class="rec-item">🤖 <strong>SMIT442 Chatbot</strong> - Chatbot WhatsApp automatizado 24/7 que responde mensajes, califica leads y agenda citas. Incluye panel de control y estadísticas.</div>
+            <div class="rec-item">⚡ <strong>SMIT442 Flujos</strong> - Secuencias automáticas para leads y clientes. Responde FAQs, envía catálogos y agenda citas sin intervención humana.</div>
+            <div class="rec-item">📊 <strong>SMIT442 Dashboard</strong> - Tablero interactivo con métricas en tiempo real: alcance, engagement, crecimiento, leads generados y conversiones. Acceso web 24/7.</div>
+            <div class="rec-item">🔍 <strong>SMIT442 Competencia</strong> - Reporte semanal automático de 3-5 competidores. Analizamos sus publicaciones, engagement, hashtags y estrategias que les funcionan.</div>
+            <div class="rec-item">📋 <strong>SMIT442 Auditoría</strong> - Detectamos fugas de leads, oportunidades de automatización y te entregamos un plan de acción con prioridades.</div>
+            <div class="rec-item">📈 <strong>SMIT442 Analytics</strong> - Análisis profundo de tus métricas. Descubre qué funciona, qué no, por qué, y recibe recomendaciones basadas en datos reales.</div>
+            <div class="rec-item">🎯 <strong>SMIT442 Research</strong> - Estudio completo de tu industria: tendencias, comportamientos de audiencia, oportunidades de crecimiento y análisis FODA.</div>
+            <div class="rec-item">🔄 <strong>SMIT442 Funnels</strong> - Optimización de tu funnel de ventas actual. Aumentamos tu tasa de conversión con automatización estratégica.</div>
+            <div class="rec-item">💬 <strong>SMIT442 WhatsApp API</strong> - Integración profesional de WhatsApp Business API. Notificaciones masivas, recuperación de carritos abandonados y automatización de conversaciones a escala.</div>
             <hr>
             <div style="background:#fef3c7; color:#1e293b; padding:15px; border-radius:16px; margin-top:10px;">
                 <strong>🎯 ESTRATEGIA DE VENTA:</strong><br>
-                ${lead.score < 50 ? '🔴 Lead con URGENCIA. Ofrece [CHATBOT] + [AUTOMATIZACIÓN] como solución inmediata.' :
-                  lead.score < 70 ? '🟡 Lead con potencial. Ofrece [PROGRAMADOR] + [ADS] para escalar.' :
-                  '🟢 Lead avanzado. Ofrece [ANALYTICS] + [SUITE] para escalamiento premium.'}
+                ${lead.score < 50 ? '🔴 Lead con URGENCIA. Ofrece SMIT442 Chatbot + SMIT442 Flujos como solución inmediata.' :
+                  lead.score < 70 ? '🟡 Lead con potencial. Ofrece SMIT442 Dashboard + SMIT442 Competencia para escalar.' :
+                  '🟢 Lead avanzado. Ofrece SMIT442 Analytics + SMIT442 Funnels para escalamiento premium.'}
                 <br><br>
                 <strong>📝 Mensaje personalizado para <em>${lead.username}</em>:</strong><br>
-                <textarea id="mensajeVenta" style="width:100%; padding:10px; border-radius:12px; background:#0f172a; color:white; border:1px solid #334155; margin-top:10px;" rows="6">${lead.score < 50 ? `Hola *${lead.username}*, vi tu auditoría. Tu puntaje es bajo (${lead.score}/100). En [NOMBRE DE TU AGENCIA] tenemos soluciones que pueden resolver tu situación:
+                <textarea id="mensajeVenta" style="width:100%; padding:10px; border-radius:12px; background:#0f172a; color:white; border:1px solid #334155; margin-top:10px;" rows="6">${lead.score < 50 ? `Hola *${lead.username}*, vi tu auditoría. Tu puntaje es bajo (${lead.score}/100). En SMIT442 tenemos soluciones que pueden resolver tu situación:
 
-🤖 *[CHATBOT]* - Automatiza respuestas 24/7
-⚡ *[AUTOMATIZACIÓN]* - IA que responde por ti
+🤖 *SMIT442 Chatbot* - Automatiza respuestas 24/7
+⚡ *SMIT442 Flujos* - IA que responde por ti
 
 ¿Te interesaría agendar una llamada de 15 minutos sin costo para mostrarte cómo funcionan?` : lead.score < 70 ? `Hola *${lead.username}*, tu auditoría muestra que vas bien (${lead.score}/100). Con nuestras soluciones puedes escalar:
 
-📅 *[PROGRAMADOR]* - Programa tu contenido automáticamente
-📢 *[ADS]* - Campañas publicitarias gestionadas
-📊 *[ANALYTICS]* - Reporte de competidores
+📊 *SMIT442 Dashboard* - Métricas en tiempo real
+🔍 *SMIT442 Competencia* - Reporte semanal de competidores
 
 ¿Te comparto el catálogo con precios?` : `Hola *${lead.username}*, ¡felicidades! Tu cuenta está en el TOP (${lead.score}/100). Nuestras soluciones premium te ayudarán a escalar sin más esfuerzo:
 
-🔍 *[SUITE]* - Unifica todas tus redes
-📈 *[REPORTES]* - Dashboard con KPIs en tiempo real
+📈 *SMIT442 Analytics* - Análisis profundo de métricas
+🔄 *SMIT442 Funnels* - Optimización de conversión
 
 ¿Te interesaría conocer el plan premium?`}</textarea>
                 <button class="btn-wa" style="margin-top:10px; width:100%; padding:10px;" onclick="enviarMensaje('${lead.whatsapp}')">📲 Enviar por WhatsApp</button>
@@ -288,32 +244,65 @@ const productos = [
         document.getElementById('modal').style.display = 'flex';
     }
 
+    // ============================================================
+    // 🔥 FUNCIÓN ENVIAR MENSAJE CORREGIDA (detecta móvil vs escritorio)
+    // ============================================================
     function enviarMensaje(whatsapp) {
         const mensaje = document.getElementById('mensajeVenta').value;
-        if (!mensaje) return;
-        let numero = whatsapp.replace(/[^0-9]/g, '');
-        if (numero.length === 10) numero = '521' + numero;
-        if (!numero.startsWith('521')) numero = '521' + numero;
-        window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        if (!mensaje) {
+            alert('⚠️ No hay mensaje para enviar');
+            return;
+        }
+        if (!whatsapp) {
+            alert('⚠️ El lead no tiene número de WhatsApp registrado');
+            return;
+        }
+
+        let numero = whatsapp.toString().replace(/[^0-9]/g, '');
+        if (numero.length === 10) numero = '52' + numero;
+        if (!numero.startsWith('52')) numero = '52' + numero;
+
+        // Detectar si es dispositivo móvil
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // En celular: abre la app de WhatsApp
+            window.location.href = `whatsapp://send?phone=${numero}&text=${encodeURIComponent(mensaje)}`;
+        } else {
+            // En computadora: abre WhatsApp Web
+            window.open(`https://web.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
     }
 
     // ============================================================
-    // 🔥 SCRIPTS DE CONTACTO - MODIFICA CON TUS PRODUCTOS
+    // 🔥 FUNCIÓN CONTACTAR CORREGIDA
     // ============================================================
     function contactar(whatsapp, username, score) {
-        if (!whatsapp) { alert('No tiene WhatsApp'); return; }
+        if (!whatsapp) {
+            alert('⚠️ No tiene WhatsApp registrado');
+            return;
+        }
+
         let script = "";
         if (score < 50) {
-            script = `Hola *${username}*, soy de [NOMBRE DE TU AGENCIA]. Vi tu auditoría (puntaje ${score}/100). Nuestro *[CHATBOT]* y *[AUTOMATIZACIÓN]* pueden resolver tu situación URGENTE en menos de 15 días. ¿Te interesaría agendar una llamada sin costo?`;
+            script = `Hola *${username}*, soy de SMIT442. Vi tu auditoría (puntaje ${score}/100). Nuestro *SMIT442 Chatbot* y *SMIT442 Flujos* pueden resolver tu situación URGENTE en menos de 15 días. ¿Te interesaría agendar una llamada sin costo?`;
         } else if (score < 70) {
-            script = `Hola *${username}*, soy de [NOMBRE DE TU AGENCIA]. Tu auditoría muestra potencial (${score}/100). Nuestro *[PROGRAMADOR]* y *[ADS]* pueden ayudarte a escalar rápidamente. ¿Te comparto los detalles y precios?`;
+            script = `Hola *${username}*, soy de SMIT442. Tu auditoría muestra potencial (${score}/100). Nuestro *SMIT442 Dashboard* y *SMIT442 Competencia* pueden ayudarte a escalar rápidamente. ¿Te comparto los detalles y precios?`;
         } else {
-            script = `Hola *${username}*, soy de [NOMBRE DE TU AGENCIA]. ¡Felicidades por tu puntaje (${score}/100)! Nuestro *[ANALYTICS]* y *[SUITE]* pueden llevarte al siguiente nivel sin más esfuerzo. ¿Te interesaría conocer el plan premium?`;
+            script = `Hola *${username}*, soy de SMIT442. ¡Felicidades por tu puntaje (${score}/100)! Nuestro *SMIT442 Analytics* y *SMIT442 Funnels* pueden llevarte al siguiente nivel sin más esfuerzo. ¿Te interesaría conocer el plan premium?`;
         }
-        let numero = whatsapp.replace(/[^0-9]/g, '');
-        if (numero.length === 10) numero = '521' + numero;
-        if (!numero.startsWith('521')) numero = '521' + numero;
-        window.open(`https://wa.me/${numero}?text=${encodeURIComponent(script)}`, '_blank');
+
+        let numero = whatsapp.toString().replace(/[^0-9]/g, '');
+        if (numero.length === 10) numero = '52' + numero;
+        if (!numero.startsWith('52')) numero = '52' + numero;
+
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            window.location.href = `whatsapp://send?phone=${numero}&text=${encodeURIComponent(script)}`;
+        } else {
+            window.open(`https://web.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(script)}`, '_blank');
+        }
     }
 
     function eliminar(date) {
