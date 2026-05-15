@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría Gratis | SMIT442 Automatización & Digitalización</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; color: white; margin-bottom: 10px; }
+        .header p { color: rgba(255,255,255,0.8); }
+        .badge {
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 40px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #fbbf24;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            font-size: 1.3rem;
+            color: #1e293b;
+            margin-bottom: 20px;
+            border-left: 4px solid #fbbf24;
+            padding-left: 15px;
+        }
+        .input-group { margin-bottom: 15px; }
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #475569;
+        }
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        .generate-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1e293b;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        .whatsapp-input { background: #f0fdf4; border: 2px solid #25D366; }
+        footer { text-align: center; margin-top: 40px; color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📊 Auditoría Gratis de Redes Sociales</h1>
+        <p>Recibe diagnóstico + recomendaciones por WhatsApp</p>
+        <div class="badge">🎁 100% GRATIS · Sin compromiso</div>
+    </div>
+
+    <div class="card">
+        <h2>📝 Datos de tu negocio</h2>
+        <div class="input-group">
+            <label>📱 Red social principal</label>
+            <select id="platform">
+                <option value="instagram">Instagram</option>
+                <option value="facebook">Facebook</option>
+                <option value="tiktok">TikTok</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>🔗 @Usuario /nombre / nombre de perfil</label>
+            <input type="text" id="username" placeholder="Ej: @tu_negocio o Tu Nombre">
+        </div>
+        <div class="input-group">
+            <label>🏢 Industria</label>
+            <select id="industry">
+                <option value="estetica">💅 Estética / Belleza</option>
+                <option value="fitness">💪 Fitness / Nutrición</option>
+                <option value="educacion">📚 Educación / Cursos</option>
+                <option value="inmobiliaria">🏠 Inmobiliaria / Bienes Raices</option>
+                <option value="salud">🩺 Salud / Bienestar</option>
+                <option value="comida">🍔 Restaurantes / Catering / Eventos</option>
+                <option value="moda">👗 Moda </option>
+                <option value="otro">📌 Otro</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>🎯 Objetivo principal</label>
+            <select id="goal">
+                <option value="ventas">💰 Más ventas</option>
+                <option value="leads">📞 Más leads</option>
+                <option value="seguidores">📈 Más seguidores</option>
+                <option value="marca">⭐ Posicionamiento</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>👥 Seguidores</label>
+            <input type="number" id="followers" placeholder="Ej: 1500">
+        </div>
+        <div class="input-group">
+            <label>❤️ Likes (últimos 5 posts)</label>
+            <input type="number" id="likes" placeholder="Ej: 600">
+        </div>
+        <div class="input-group">
+            <label>💬 Comentarios promedio</label>
+            <input type="number" id="comments" placeholder="Ej: 5">
+        </div>
+        <div class="input-group">
+            <label>📅 Publicaciones por semana</label>
+            <input type="number" id="postsPerWeek" placeholder="Ej: 3">
+        </div>
+        <div class="input-group">
+            <label>📱 WhatsApp <span style="color:#dc2626;">*</span></label>
+            <input type="tel" id="whatsapp" class="whatsapp-input" placeholder="Ej: 5214421697170" required>
+        </div>
+        <button class="generate-btn" id="sendBtn">📲 Enviar mi auditoría →</button>
+    </div>
+
+    <footer>™ SMIT442 - Automatización y Digitalización</footer>
+</div>
+
+<script>
+    function calcularMetricas() {
+        const followers = parseInt(document.getElementById('followers').value) || 0;
+        const likes = parseInt(document.getElementById('likes').value) || 0;
+        const comments = parseInt(document.getElementById('comments').value) || 0;
+        const posts = parseInt(document.getElementById('postsPerWeek').value) || 0;
+        const platform = document.getElementById('platform').value;
+
+        const avgLikes = followers > 0 ? (likes / 5) : 0;
+        const engagement = followers > 0 ? ((avgLikes + comments) / followers * 100).toFixed(1) : 0;
+        let benchmark = platform === 'instagram' ? 2.5 : (platform === 'tiktok' ? 4.5 : 2.0);
+
+        let score = 50;
+        if (engagement >= 3) score += 25;
+        else if (engagement >= 1) score += 10;
+        if (posts >= 4) score += 15;
+        if (comments >= 5) score += 10;
+        score = Math.min(100, Math.max(0, score));
+
+        let username = document.getElementById('username').value.trim();
+        if (!username) username = "usuario";
+
+        return {
+            engagement, score, platform, followers, posts, benchmark,
+            username: username,
+            industry: document.getElementById('industry').value,
+            goal: document.getElementById('goal').value,
+            whatsapp: document.getElementById('whatsapp').value.trim()
+        };
+    }
+
+    function generarDiagnostico(m) {
+        const diag = [];
+        if (m.engagement < 2) diag.push(`⚠️ Engagement ${m.engagement}% - DEBAJO del promedio (${m.benchmark}%)`);
+        else if (m.engagement < 4) diag.push(`📊 Engagement ${m.engagement}% - CERCA del promedio (${m.benchmark}%)`);
+        else diag.push(`🔥 Engagement ${m.engagement}% - SUPERA el promedio`);
+
+        if (m.posts < 3) diag.push(`⏰ Publicas ${m.posts}x/semana - IDEAL: 4-5 posts`);
+        else if (m.posts < 5) diag.push(`📅 Publicas ${m.posts}x/semana - BUEN ritmo`);
+        else diag.push(`✅ Frecuencia de ${m.posts}x/semana - EXCELENTE`);
+
+        if (m.score < 50) diag.push(`🎯 Puntaje ${m.score}/100 - NECESITAS cambios URGENTES`);
+        else if (m.score < 70) diag.push(`🎯 Puntaje ${m.score}/100 - OPORTUNIDADES de mejora`);
+        else diag.push(`🎯 Puntaje ${m.score}/100 - LISTO para escalar`);
+        return diag;
+    }
+
+    function generarRecomendaciones(m) {
+        const recs = [];
+        if (m.engagement < 3) recs.push("📢 Mejora engagement: Responde comentarios en < 1 hora");
+        else recs.push("📊 Mantén engagement: Sigue respondiendo rápido");
+
+        if (m.posts < 4) recs.push("⏰ Aumenta frecuencia: 4-5 posts + stories diarias");
+        else recs.push("📅 Optimiza horarios: Publica cuando tu audiencia está activa");
+
+        recs.push("🏷️ Usa 5-10 hashtags estratégicos por post");
+        return recs;
+    }
+
+    function guardarLead(m, diagnosticos, recs) {
+        const lead = {
+            date: new Date().toISOString(),
+            username: m.username,
+            whatsapp: m.whatsapp,
+            industry: m.industry,
+            goal: m.goal,
+            followers: m.followers,
+            engagement: m.engagement,
+            score: m.score,
+            diagnosticos: diagnosticos,
+            recomendaciones: recs
+        };
+        let leads = JSON.parse(localStorage.getItem('auditoria_leads') || '[]');
+        leads.push(lead);
+        localStorage.setItem('auditoria_leads', JSON.stringify(leads));
+    }
+
+    function enviarWhatsApp() {
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        if (!whatsapp) {
+            alert('⚠️ Ingresa tu número de WhatsApp');
+            document.getElementById('whatsapp').focus();
+            return;
+        }
+
+        const m = calcularMetricas();
+        const diagnosticos = generarDiagnostico(m);
+        const recomendaciones = generarRecomendaciones(m);
+
+        guardarLead(m, diagnosticos, recomendaciones);
+
+        // ============================================================
+        // 🔥 MODIFICA AQUÍ: Nombres de tus productos y agencia
+        // ============================================================
+        const mensaje = `📊 *AUDITORÍA GRATIS*
+
+Hola *${m.username}*, aquí está tu diagnóstico personalizado:
+
+📋 *TUS DATOS:*
+• Industria: ${m.industry}
+• Objetivo: ${m.goal}
+• Seguidores: ${m.followers}
+• Engagement: ${m.engagement}%
+• Puntaje: ${m.score}/100
+
+🔍 *DIAGNÓSTICO:*
+${diagnosticos.map(d => `• ${d}`).join('\n')}
+
+✅ *3 RECOMENDACIONES BÁSICAS:*
+${recomendaciones.map(r => `• ${r}`).join('\n')}
+
+💡 *¿Quieres las 8 RECOMENDACIONES AVANZADAS, ${m.username}?*
+
+En *[NOMBRE DE TU AGENCIA]* tenemos soluciones exclusivas:
+
+🤖 *[CHATBOT]* - Responde 24/7 y captura leads automáticamente
+📅 *[PROGRAMADOR]* - Calendario visual para tus publicaciones
+📢 *[ADS]* - Campañas publicitarias gestionadas por expertos
+🎯 *[RETARGETING]* - Recupera leads que no compraron
+📊 *[ANALYTICS]* - Reporte semanal de competidores
+⚡ *[AUTOMATIZACIÓN]* - IA que responde por ti
+🔍 *[SUITE]* - Unifica todas tus redes sociales
+📈 *[REPORTES]* - Dashboard con tus KPIs en tiempo real
+
+📦 *KIT COMPLETO* - Todos los servicios juntos con descuento
+
+Responde "AVANZADAS" y te envío el catálogo completo con precios.
+
+¡Quedo atento! 🚀`;
+
+        let numero = whatsapp.replace(/[^0-9]/g, '');
+        if (numero.length === 10) numero = '521' + numero;
+        if (!numero.startsWith('521')) numero = '521' + numero;
+
+        window.open(`https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        alert('✅ Auditoría enviada a tu WhatsApp');
+    }
+
+    document.getElementById('sendBtn').addEventListener('click', enviarWhatsApp);
+</script>
+</body>
+</html>
